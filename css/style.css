@@ -142,6 +142,23 @@ footer {
   margin-top: 10px;
 }
 
+input,
+textarea {
+  width: 100%;
+
+  padding: 15px;
+
+  border: 1px solid #ddd;
+
+  font-size: 16px;
+}
+
+form {
+  max-width: 700px;
+
+  margin: auto;
+}
+
 @media (max-width: 768px) {
   nav {
     display: none;

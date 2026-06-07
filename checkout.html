@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Checkout | Noreva</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">NOREVA</div>
+    </header>
+
+    <section class="products">
+      <h2>Checkout</h2>
+
+      <form id="checkoutForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+
+        <br /><br />
+
+        <input type="text" id="phone" placeholder="Mobile Number" required />
+
+        <br /><br />
+
+        <textarea id="address" placeholder="Full Address" required></textarea>
+
+        <br /><br />
+
+        <textarea id="note" placeholder="Order Note"></textarea>
+
+        <br /><br />
+
+        <h3 id="checkoutTotal">Total: ৳ 0</h3>
+
+        <br />
+
+        <button type="submit">Place Order</button>
+      </form>
+    </section>
+
+    <script src="js/checkout.js"></script>
+  </body>
+</html>
