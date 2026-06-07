@@ -34,16 +34,15 @@ grid.innerHTML += `
 
 <div class="product-card">
 
-<img
-src="${product.image}">
+<img src="${product.image}" alt="${product.name}">
 
-<h3>
-${product.name}
-</h3>
+<h3>${product.name}</h3>
 
-<p>
-৳ ${product.price}
-</p>
+<p>৳ ${product.price}</p>
+
+<button onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+Add To Cart
+</button>
 
 </div>
 
@@ -106,5 +105,48 @@ matchCategory
 renderProducts(filtered);
 
 }
+
+function addToCart(product){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+cart.push(product);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+alert("Added to Cart");
+
+}
+
+function updateCartCount(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const counter =
+document.getElementById(
+"cartCount"
+);
+
+if(counter){
+
+counter.innerText =
+cart.length;
+
+}
+
+}
+
+updateCartCount();
 
 loadProducts();
