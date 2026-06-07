@@ -1,5 +1,5 @@
 const API_URL =
-"https://script.google.com/macros/s/AKfycbzxKsoCcTIO27Kh9QvgT-WfHvzb7F19F17iQ8duebOh6UuUcaASjW4QudvX2MAM0A/exec";
+"https://script.google.com/macros/s/AKfycbxZyYrZmY5yVWG2ctEc_OH34nNR7y_BDQprKp1GmEmEej-0ekglyabi3Jk8z60tJYm-/exec";
 
 let cart =
 JSON.parse(
