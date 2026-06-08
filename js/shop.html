@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Shop | Noreva</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">NOREVA</div>
+
+      <nav>
+        <a href="index.html">Home</a>
+
+        <a href="shop.html">Shop</a>
+      </nav>
+
+      <div class="cart-btn">
+        <a href="cart.html">
+          Cart (
+          <span id="cartCount"> 0 </span>
+          )
+        </a>
+      </div>
+    </header>
+
+    <section class="products">
+      <h2>Shop</h2>
+
+      <input type="text" id="search" placeholder="Search Product" />
+
+      <select id="category">
+        <option value="">All Categories</option>
+
+        <option value="Men">Men</option>
+
+        <option value="Women">Women</option>
+
+        <option value="Fragrance">Fragrance</option>
+      </select>
+
+      <div id="productGrid"></div>
+    </section>
+
+    <script src="js/common.js"></script>
+    <script src="js/shop.js"></script>
+  </body>
+</html>
