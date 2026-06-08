@@ -28,6 +28,34 @@ Date.now();
 
 }
 
+function formatDate() {
+
+  const now = new Date();
+
+  const months = [
+    "Jan","Feb","Mar","Apr","May","Jun",
+    "Jul","Aug","Sep","Oct","Nov","Dec"
+  ];
+
+  const day = now.getDate();
+
+  const month = months[now.getMonth()];
+
+  const year = String(now.getFullYear()).slice(-2);
+
+  const time = now.toLocaleTimeString(
+    "en-US",
+    {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    }
+  );
+
+  return `${day}-${month}-${year}  ||  ${time}`;
+
+}
+
 document
 .getElementById(
 "checkoutForm"
@@ -44,8 +72,7 @@ order_id:
 generateOrderId(),
 
 date:
-new Date()
-.toLocaleString(),
+formatDate(),
 
 customer_name:
 document
