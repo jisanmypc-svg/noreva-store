@@ -12,7 +12,7 @@ document.getElementById(
 
 if(counter){
 
-cconst totalItems =
+const totalItems =
 cart.reduce(
     (sum,item)=>
     sum + item.quantity,

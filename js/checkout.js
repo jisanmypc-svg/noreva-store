@@ -6,6 +6,14 @@ JSON.parse(
 localStorage.getItem("cart")
 ) || [];
 
+if(cart.length === 0){
+
+window.location.href =
+"cart.html";
+
+}
+
+
 let total = 0;
 
 cart.forEach(item=>{
@@ -14,6 +22,29 @@ total +=
 Number(item.price)
 *
 Number(item.quantity);
+
+});
+
+const summary =
+document.getElementById(
+"orderSummary"
+);
+
+summary.innerHTML = "";
+
+cart.forEach(item=>{
+
+summary.innerHTML += `
+
+<p>
+${item.name}
+×
+${item.quantity}
+=
+৳ ${item.price * item.quantity}
+</p>
+
+`;
 
 });
 
@@ -162,8 +193,9 @@ encodeURIComponent(order.total);
 
 await fetch(url);
 
-alert(
-"Order Placed Successfully"
+localStorage.setItem(
+"lastOrderId",
+order.order_id
 );
 
 localStorage.removeItem(
@@ -171,7 +203,7 @@ localStorage.removeItem(
 );
 
 window.location.href =
-"index.html";
+"success.html";
 
 }
 catch(error){

@@ -25,7 +25,12 @@ async function loadFeaturedProducts(){
 
             container.innerHTML += `
 
-            <div class="product-card">
+            <div
+class="product-card"
+onclick="
+window.location.href=
+'product.html?id=${product.id}'
+">
 
                 <img
                 src="${product.image}"

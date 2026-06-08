@@ -60,7 +60,12 @@ products.forEach(product=>{
 
 grid.innerHTML += `
 
-<div class="product-card">
+<div
+class="product-card"
+onclick="
+window.location.href=
+'product.html?id=${product.id}'
+">
 
 <img src="${product.image}" alt="${product.name}">
 

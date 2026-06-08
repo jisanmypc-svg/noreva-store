@@ -10,7 +10,40 @@ function renderCart(){
 
     cartItems.innerHTML = "";
 
+    if(cart.length === 0){
+
+cartItems.innerHTML = `
+
+<div class="empty-cart">
+
+<h2>
+Your Cart Is Empty
+</h2>
+
+<a href="shop.html">
+
+<button>
+Continue Shopping
+</button>
+
+</a>
+
+</div>
+
+`;
+
+document
+.getElementById(
+"totalPrice"
+).innerText = "";
+
+return;
+
+}
+
     let total = 0;
+
+    
 
     cart.forEach((item,index)=>{
 
