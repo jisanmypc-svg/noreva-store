@@ -10,7 +10,10 @@ let total = 0;
 
 cart.forEach(item=>{
 
-total += Number(item.price);
+total +=
+Number(item.price)
+*
+Number(item.quantity);
 
 });
 

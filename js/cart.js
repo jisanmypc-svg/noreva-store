@@ -8,36 +8,86 @@ document.getElementById("cartItems");
 
 function renderCart(){
 
-cartItems.innerHTML = "";
+    cartItems.innerHTML = "";
 
-let total = 0;
+    let total = 0;
 
-cart.forEach((item,index)=>{
+    cart.forEach((item,index)=>{
 
-total += Number(item.price);
+        const itemTotal =
+        item.price *
+        item.quantity;
 
-cartItems.innerHTML += `
+        total += itemTotal;
 
-<div class="product-card">
+        cartItems.innerHTML += `
 
-<img src="${item.image}" alt="${item.name}">
+        <div class="product-card">
 
-<h3>${item.name}</h3>
+            <img
+            src="${item.image}">
 
-<p>৳ ${item.price}</p>
+            <h3>
 
-<button onclick="removeItem(${index})">
-Remove
-</button>
+                ${item.name}
 
-</div>
+            </h3>
 
-`;
+            <p>
 
-});
+                ৳ ${item.price}
 
-document.getElementById("totalPrice").innerText =
-"Total: ৳ " + total;
+            </p>
+
+            <div class="qty-box">
+
+                <button
+                onclick="decreaseQty(${index})">
+
+                -
+
+                </button>
+
+                <span>
+
+                ${item.quantity}
+
+                </span>
+
+                <button
+                onclick="increaseQty(${index})">
+
+                +
+
+                </button>
+
+            </div>
+
+            <p>
+
+                Total:
+                ৳ ${itemTotal}
+
+            </p>
+
+            <button
+            onclick="removeItem(${index})">
+
+            Remove
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    document
+    .getElementById(
+        "totalPrice"
+    ).innerText =
+    "Total: ৳ " + total;
 
 }
 
@@ -55,3 +105,39 @@ renderCart();
 }
 
 renderCart();
+
+function increaseQty(index){
+
+    cart[index].quantity++;
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCart();
+
+}
+
+function decreaseQty(index){
+
+    if(
+        cart[index].quantity > 1
+    ){
+
+        cart[index].quantity--;
+
+    }else{
+
+        cart.splice(index,1);
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCart();
+
+}

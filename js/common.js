@@ -12,8 +12,15 @@ document.getElementById(
 
 if(counter){
 
+cconst totalItems =
+cart.reduce(
+    (sum,item)=>
+    sum + item.quantity,
+    0
+);
+
 counter.innerText =
-cart.length;
+totalItems;
 
 }
 
