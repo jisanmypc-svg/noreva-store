@@ -9,32 +9,53 @@ window.location.search
 const productId =
 params.get("id");
 
+let currentProduct = null;
+
 async function loadProduct(){
 
-    const response =
-    await fetch(API_URL);
+    try{
 
-    const products =
-    await response.json();
+        const response =
+        await fetch(API_URL);
 
-    const product =
-    products.find(
-        p => p.id == productId
-    );
+        const products =
+        await response.json();
 
-    if(!product){
+        const product =
+        products.find(
+            p => p.id == productId
+        );
+
+        if(!product){
+
+            document
+            .getElementById(
+                "productDetails"
+            )
+            .innerHTML =
+            "<h2>Product Not Found</h2>";
+
+            return;
+
+        }
+
+        currentProduct = product;
+
+        renderProduct(product);
+
+    }
+    catch(error){
+
+        console.log(error);
 
         document
         .getElementById(
             "productDetails"
         )
         .innerHTML =
-        "<h2>Product Not Found</h2>";
+        "<h2>Failed To Load Product</h2>";
 
-        return;
     }
-
-    renderProduct(product);
 
 }
 
@@ -55,27 +76,19 @@ function renderProduct(product){
         <div>
 
             <h1>
-
             ${product.name}
-
             </h1>
 
             <p>
-
             ${product.description}
-
             </p>
 
             <h2>
-
             ৳ ${product.price}
-
             </h2>
 
             <button
-            onclick='addToCartFromPage(
-            ${JSON.stringify(product)}
-            )'>
+            onclick="addCurrentProductToCart()">
 
             Add To Cart
 
@@ -89,7 +102,13 @@ function renderProduct(product){
 
 }
 
-function addToCartFromPage(product){
+function addCurrentProductToCart(){
+
+    if(!currentProduct){
+
+        return;
+
+    }
 
     let cart =
     JSON.parse(
@@ -98,18 +117,22 @@ function addToCartFromPage(product){
 
     const existing =
     cart.find(
-        item => item.id == product.id
+        item => item.id == currentProduct.id
     );
 
     if(existing){
 
         existing.quantity++;
 
-    }else{
+    }
+    else{
 
-        product.quantity = 1;
+        const productToAdd = {
+            ...currentProduct,
+            quantity: 1
+        };
 
-        cart.push(product);
+        cart.push(productToAdd);
 
     }
 
