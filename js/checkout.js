@@ -1,5 +1,5 @@
 const API_URL =
-"https://script.google.com/macros/s/AKfycbxZyYrZmY5yVWG2ctEc_OH34nNR7y_BDQprKp1GmEmEej-0ekglyabi3Jk8z60tJYm-/exec";
+"https://script.google.com/macros/s/AKfycbzxKsoCcTIO27Kh9QvgT-WfHvzb7F19F17iQ8duebOh6UuUcaASjW4QudvX2MAM0A/exec";
 
 let cart =
 JSON.parse(
@@ -83,27 +83,52 @@ total
 
 };
 
-try{
+try {
 
-const response =
-await fetch(API_URL,{
+const url =
+API_URL +
 
-method:"POST",
+"?action=order" +
 
-headers:{
-"Content-Type":
-"application/json"
-},
+"&order_id=" +
+encodeURIComponent(order.order_id)
 
-body:
-JSON.stringify(order)
++
 
-});
+"&date=" +
+encodeURIComponent(order.date)
 
-const result =
-await response.json();
++
 
-if(result.success){
+"&customer_name=" +
+encodeURIComponent(order.customer_name)
+
++
+
+"&phone=" +
+encodeURIComponent(order.phone)
+
++
+
+"&address=" +
+encodeURIComponent(order.address)
+
++
+
+"&note=" +
+encodeURIComponent(order.note)
+
++
+
+"&products=" +
+encodeURIComponent(order.products)
+
++
+
+"&total=" +
+encodeURIComponent(order.total);
+
+await fetch(url);
 
 alert(
 "Order Placed Successfully"
@@ -117,14 +142,13 @@ window.location.href =
 "index.html";
 
 }
+catch(error){
 
-}catch(error){
+console.log(error);
 
 alert(
 "Order Failed"
 );
-
-console.log(error);
 
 }
 
