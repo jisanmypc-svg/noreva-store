@@ -76,7 +76,9 @@ document
 .value,
 
 products:
-JSON.stringify(cart),
+cart.map(item =>
+item.name + " (৳" + item.price + ")"
+).join(" | "),
 
 total:
 total
