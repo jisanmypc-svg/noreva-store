@@ -15,7 +15,35 @@ await response.json();
 
 allProducts = data;
 
-renderProducts(data);
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const selectedCategory =
+params.get("category");
+
+if(selectedCategory){
+
+document
+.getElementById("category")
+.value =
+selectedCategory;
+
+const filtered =
+allProducts.filter(
+product =>
+product.category === selectedCategory
+);
+
+renderProducts(filtered);
+
+}
+else{
+
+renderProducts(allProducts);
+
+}
 
 }
 
