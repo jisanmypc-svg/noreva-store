@@ -73,8 +73,11 @@ window.location.href=
 
 <p>৳ ${product.price}</p>
 
-<button onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+<button
+onclick="event.stopPropagation(); addToCartById(${product.id})">
+
 Add To Cart
+
 </button>
 
 </div>
@@ -82,6 +85,23 @@ Add To Cart
 `;
 
 });
+
+}
+
+function addToCartById(productId){
+
+    const product =
+    allProducts.find(
+        item => item.id == productId
+    );
+
+    if(!product){
+
+        return;
+
+    }
+
+    addToCart(product);
 
 }
 
